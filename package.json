@@ -1,0 +1,25 @@
+{
+  "name": "mai_vitro_api",
+  "version": "1.0.1",
+  "description": "JS wrapper for the official Vitro-CAD API",
+  "main": "mai_vitro_api.js",
+  "scripts": {
+    "test": "tests.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GinnyT/mai_vitro_api.git"
+  },
+  "keywords": [
+    "JavaScript",
+    "Vitro-CAD",
+    "API",
+    "VitroAPI"
+  ],
+  "author": "Milkoff A. I.",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/GinnyT/mai_vitro_api/issues"
+  },
+  "homepage": "https://github.com/GinnyT/mai_vitro_api#readme"
+}

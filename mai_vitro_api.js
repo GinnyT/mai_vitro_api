@@ -48,6 +48,32 @@ module.exports = class MAI_Vitro_API {
         return this.expires > Date.now();
     };
 
-    
-    
+    //**Все элементы
+
+    //Чтение метаданных. Получить информацию об элементе по ID элемента
+    // itemId: Guid - ID элемента списка
+    // Выходные параметры:
+    // json объект:
+    // {
+    //     id: Guid -  ID элемента
+    //     siteId: Guid -  ID сайта
+    //     listId: Guid -  ID списка
+    //     parentId: Guid -  ID родительского элемента
+    //     itemPath: ItemPath -  путь до элемента + количество дочерних элементов
+    //     сontentTypeId - ID типа контента элемента
+    //     fieldValueMap - объект ключ-значение. Ключ - internalName поля, значение - значение этого поля в элементе
+    // }
+    async item_get(itemId) {
+        const response = await fetch(`${this.baseUrl}/api/item/get/${itemId}`, {method: 'POST'})
+        .catch(err => {
+            throw new Error(`Ошибка запроса!\n ${err}\n-----`);
+        });
+
+        const json = await response.json()
+        .catch(err=> {
+            throw new Error(`Ошибка ответа сервера! \n ${err}\n-----`);
+        });
+
+        return json;
+    };
 };

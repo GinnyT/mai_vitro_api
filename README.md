@@ -7,12 +7,15 @@
 
  *  Документация вендора: https://api.vitrocad.ru
 
+ *  VITRO MP REST API dерсия 24.1.37
+
  *  Лицензия: открытый исходный код, GNU GPL.
 
 ## Возможности
 
 -  ```static async init({ baseUrl, username, password })``` - инициализация подключения к системе Vitro-CAD
 -  ```get is_alive()``` - проверка текущего токена экземпляра
+-  ```async item_get(itemId)``` - получить информацию об элементе системы по ID элемента
 
 ## Установка
 
@@ -34,9 +37,6 @@ const VITRO = require('./mai_vitro_api');
 async function init_test(init_data) {
     //Инициализация класса
     const api = await VITRO.init(init_data);
-
-    //проверка содержимого
-    console.info('Успешно!\n', api);
 
     //проверка API токена (выдается на три дня)
     console.info('Жив? ', api.is_alive);

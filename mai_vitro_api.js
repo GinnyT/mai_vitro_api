@@ -23,8 +23,8 @@ module.exports = class MAI_Vitro_API {
                 'Content-Type': 'application/json;charset=UTF-8'
             },
             body: JSON.stringify({
-                "UserName": init_data.username,
-                "Password": init_data.password,
+                "login": init_data.username,
+                "password": init_data.password,
             })
         })
         .catch(err => {
@@ -50,21 +50,37 @@ module.exports = class MAI_Vitro_API {
 
     //**Все элементы
 
-    //Чтение метаданных. Получить информацию об элементе по ID элемента
-    // itemId: Guid - ID элемента списка
-    // Выходные параметры:
-    // json объект:
-    // {
-    //     id: Guid -  ID элемента
-    //     siteId: Guid -  ID сайта
-    //     listId: Guid -  ID списка
-    //     parentId: Guid -  ID родительского элемента
-    //     itemPath: ItemPath -  путь до элемента + количество дочерних элементов
-    //     сontentTypeId - ID типа контента элемента
-    //     fieldValueMap - объект ключ-значение. Ключ - internalName поля, значение - значение этого поля в элементе
-    // }
+    //Чтение метаданных. 
+    /* URL: api/item/get/{itemId}
+    Метод: POST
+    Описание: получить информацию об элементе по ID элемента
+    Входные параметры:
+    itemId: Guid - ID элемента списка
+    Выходные параметры:
+    json объект:
+
+    {
+        id: Guid -  ID элемента
+        siteId: Guid -  ID сайта
+        listId: Guid -  ID списка
+        parentId: Guid -  ID родительского элемента
+        itemPath: ItemPath -  путь до элемента + количество дочерних элементов
+        сontentTypeId - ID типа контента элемента
+        fieldValueMap - объект ключ-значение. Ключ - internalName поля, значение - значение этого поля в элементе
+    } */
+
     async item_get(itemId) {
-        const response = await fetch(`${this.baseUrl}/api/item/get/${itemId}`, {method: 'POST'})
+        const response = await fetch(
+            `${this.baseUrl}/api/item/get/${itemId}`,
+            {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json, text/plain',
+                    'Content-Type': 'application/json;charset=UTF-8',
+                    'Authorization':`${this.token}`,
+              },
+            }
+        )
         .catch(err => {
             throw new Error(`Ошибка запроса!\n ${err}\n-----`);
         });
